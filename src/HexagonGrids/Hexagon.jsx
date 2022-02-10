@@ -5,9 +5,9 @@ import Hex from "./Models/Hex";
 import { GridContext } from "./GridContext";
 
 const Hexagon = (props) => {
-  const { q, r, s } = props;
+  const { hex } = props;
   const { fill } = props;
-  const [hex, setHex] = useState(new Hex(q, r, s));
+  // const [hex, setHex] = useState(new Hex(q, r, s));
   // const { size } = useContext(GridContext);
 
   const { size } = useContext(GridContext);

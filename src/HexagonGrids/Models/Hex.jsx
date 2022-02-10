@@ -5,6 +5,10 @@ class Hex {
     this.s = s;
     this.isWall = isWall;
   }
+
+  setWall(isWall) {
+    this.isWall = isWall;
+  }
 }
 
 export default Hex;

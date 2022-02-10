@@ -3,8 +3,10 @@ import {
   HexGrid,
   HexGenerator,
   Hexagon,
+  Hex,
 } from "../../HexagonGrids";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useAlgorithms from "../Algorithms";
 
 const Mainbody = () => {
   const size = 20;
@@ -24,6 +26,23 @@ const Mainbody = () => {
   const [removingWall, setRemovingWall] = useState(false);
   const [movingOrigin, setMovingOrigin] = useState(false);
   const [movingTarget, setMovingTarget] = useState(false);
+  const [animation, setAnimation] = useState([]);
+
+  const runAlgo = useAlgorithms(hexagons, origin, target);
+
+  // useEffect(() => {
+  //   const [ani, pa] = runAlgo("dijkstra");
+  //   setAnimation(ani);
+  // }, []);
+
+  function executeAlgo() {
+    const [ani, pa] = runAlgo("dijkstra");
+    setAnimation(ani);
+  }
+
+  function clearAnimation() {
+    setAnimation([]);
+  }
 
   function hexEqual(position, hex) {
     return position.q === hex.q && position.r === hex.r;
@@ -81,6 +100,10 @@ const Mainbody = () => {
   }
   return (
     <>
+      <div>
+        <button onClick={() => executeAlgo()}>Run Algorithm</button>
+        <button onClick={() => clearAnimation()}>Clear Animation</button>
+      </div>
       <HexViewPort
         width={740}
         height={650}
@@ -90,15 +113,30 @@ const Mainbody = () => {
           {hexagons.map((hex_row, q) =>
             hex_row.map((hex, r) => {
               if (!hex) return;
+              let className = "visited";
               let fill = "hsl(60, 10%, 95%)";
               if (hex.isWall) fill = "hsl(0, 20%, 70%)";
               if (hexEqual(origin, hex)) fill = "hsl(60, 100%, 50%)";
               if (hexEqual(target, hex)) fill = "hsl(200, 50%, 80%)";
+              let fillTo = fill;
+              let isAnimate = false;
+              const animationDelay =
+                animation.reduce((acc, val, ind) => {
+                  if (val.q === q && val.r === r) {
+                    fillTo = "hsl( 90, 20%, 87%)";
+                    isAnimate = true;
+                    return ind;
+                  } else return acc;
+                }, 0) / 10;
               return (
                 <Hexagon
                   key={`${q},${r}`}
+                  className={className}
                   hex={hex}
                   fill={fill}
+                  fillTo={fillTo}
+                  isAnimate={isAnimate}
+                  animationDelay={animationDelay}
                   onClick={(e, s) => onClick(e, s)}
                   onMouseEnter={(e, s) => onMouseEnter(e, s)}
                   // onMouseOver={(e, s) => onMouseOver(e, s)}
@@ -108,6 +146,22 @@ const Mainbody = () => {
               );
             })
           )}
+          {/* {animation &&
+            animation.map(({ q, r }) => {
+              return (
+                <Hexagon
+                  key={`${q},${r}`}
+                  // className={className}
+                  hex={new Hex(q, r, -q - r)}
+                  fill={"hsl( 90, 20%, 87%)"}
+                  onClick={(e, s) => onClick(e, s)}
+                  onMouseEnter={(e, s) => onMouseEnter(e, s)}
+                  // onMouseOver={(e, s) => onMouseOver(e, s)}
+                  onMouseDown={(e, s) => onMouseDown(e, s)}
+                  onMouseUp={(e, s) => onMouseUp(e, s)}
+                ></Hexagon>
+              );
+            })} */}
         </HexGrid>
       </HexViewPort>
     </>

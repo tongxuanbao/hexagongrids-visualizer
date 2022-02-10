@@ -5,8 +5,8 @@ import Hex from "./Models/Hex";
 import { GridContext } from "./GridContext";
 
 const Hexagon = (props) => {
-  const { hex } = props;
-  const { fill } = props;
+  const { hex, className } = props;
+  const { fill, fillTo, animationDelay, isAnimate } = props;
   // const [hex, setHex] = useState(new Hex(q, r, s));
   // const { size } = useContext(GridContext);
 
@@ -45,7 +45,7 @@ const Hexagon = (props) => {
   const [points, setPoint] = useState(HexUtils.getStrHexCorners(hex, size));
   return (
     <g
-      // className={classNames("hexagon-group", className)}
+      className={className}
       // transform={`translate(${pixel.x}, ${pixel.y})`}
       draggable="true"
       onMouseEnter={(e) => onMouseEnter(e)}
@@ -65,7 +65,18 @@ const Hexagon = (props) => {
           fill={fill}
           stroke="hsl(0, 0%, 70%)"
           strokeWidth="2"
-        />
+        >
+          {isAnimate && (
+            <animate
+              attributeName="fill"
+              from={fill}
+              to={fillTo}
+              fill="freeze"
+              begin={`${animationDelay}s`}
+              dur="0.5s"
+            />
+          )}
+        </polygon>
         {props.children}
       </g>
     </g>

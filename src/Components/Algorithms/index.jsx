@@ -49,7 +49,12 @@ const useAlgorithms = (hexagons, origin, target) => {
           }
         }
       }
-      if (JSON.stringify(v) === JSON.stringify(target) || v.q === null) break;
+      if (
+        JSON.stringify(v) === JSON.stringify(target) ||
+        v.q === null ||
+        dis === INFI
+      )
+        break;
       isMarked[v.q][v.r] = true;
       if (v !== origin) ani.push(v);
       for (let i = 0; i < NEIGHBORS.length; i++) {

@@ -5,18 +5,28 @@ path.path {
   stroke-opacity: 0.5;
   stroke-linecap: round;
   stroke-linejoin: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: -1000;
+  /* animation-delay: 1s;
+  animation-duration: ;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards; */
+  /* animation: firstAnimation 2s infinite;
+  animation: name duration timing-function delay iteration-count direction fill-mode; */
 }
 
 g.hexagon {
   fill: hsl(60, 10%, 95%);
 }
 
-g.path {
+g.visited {
   fill: hsl(200, 10%, 90%);
+  transition: fill 0.3s;
 }
 
 g.origin {
   fill: hsl(60, 100%, 50%);
+  animation: fill 10;
 }
 
 g.target {
@@ -25,4 +35,23 @@ g.target {
 
 g.wall {
   fill: hsl(0, 20%, 70%);
+}
+
+@keyframes isVisited {
+  from {
+    fill: hsl(60, 10%, 95%);
+  }
+
+  to {
+    fill: hsl(200, 10%, 90%);
+  }
+}
+
+@keyframes pathAnimation {
+  0% {
+    stroke-dashoffset: -1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
 }

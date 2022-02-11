@@ -13,6 +13,7 @@ import useAlgorithms from "../Algorithms";
 import "../../Styles/Mainbody.css";
 
 const Mainbody = () => {
+  // let pathh;
   const { size, width, height } = useContext(GridContext);
   const [rad, setRad] = useState(HexUtils.getRad(size, width));
 
@@ -41,6 +42,10 @@ const Mainbody = () => {
     setPath(pa);
   }
 
+  // useEffect(() => {
+  //   if (pathh.length > 0)
+  // });
+
   function clearAnimation() {
     setAnimation([]);
     setPath([]);
@@ -67,7 +72,6 @@ const Mainbody = () => {
     if (removingWall) removeWall(hexSource);
     if (movingOrigin) setOrigin({ q: hexSource.q, r: hexSource.r });
     if (movingTarget) setTarget({ q: hexSource.q, r: hexSource.r });
-    executeAlgo();
   }
 
   // function onMouseOver(event, hexSource) {}
@@ -119,22 +123,25 @@ const Mainbody = () => {
             hex_row.map((hex, r) => {
               if (!hex) return;
               let className = "";
-              if (
-                animation.filter(
-                  (a) => JSON.stringify(a) === JSON.stringify({ q: q, r: r })
-                ).length > 0
-              ) {
-                className += " path";
-              }
-
+              let animationDelay = 0;
+              animation.forEach((a, i) => {
+                if (JSON.stringify(a) === JSON.stringify({ q: q, r: r })) {
+                  animationDelay = i / 20;
+                  className += " visited";
+                }
+              });
               if (hexEqual(origin, hex)) className += " origin";
               else if (hexEqual(target, hex)) className += " target";
               else if (hex.isWall) className += " wall";
+
+              // let animationDelay =
+
               return (
                 <Hexagon
                   key={`${q},${r}`}
                   className={className}
                   hex={hex}
+                  animationDelay={animationDelay}
                   onClick={(e, s) => onClick(e, s)}
                   onMouseEnter={(e, s) => onMouseEnter(e, s)}
                   // onMouseOver={(e, s) => onMouseOver(e, s)}
@@ -144,7 +151,9 @@ const Mainbody = () => {
               );
             })
           )}
-          {path && <Path path={path} />}
+          {path && (
+            <Path path={path} animationDelay={animation.length / 20 - 0.5} />
+          )}
         </HexGrid>
       </HexViewPort>
     </>

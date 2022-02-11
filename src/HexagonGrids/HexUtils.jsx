@@ -42,19 +42,18 @@ class HexUtils {
     return new Point(x, y);
   }
 
-  static pointyHexCorner(center, size, i) {
+  static pointyHexCorner(size, i) {
     const angle_deg = 60 * i - 30;
     const angle_rad = (Math.PI / 180) * angle_deg;
-    const x = center.x + size * Math.cos(angle_rad);
-    const y = center.y + size * Math.sin(angle_rad);
+    const x = size * Math.cos(angle_rad);
+    const y = size * Math.sin(angle_rad);
     return new Point(x, y);
   }
 
-  static getHexCorners(hex, size) {
+  static getHexCorners(size) {
     let corners = [];
-    const center = this.hexToPoint(hex, size);
     for (let i = 0; i < 6; i++) {
-      const point = this.pointyHexCorner(center, size, i);
+      const point = this.pointyHexCorner(size, i);
       corners.push(point);
     }
     return corners;
@@ -64,9 +63,36 @@ class HexUtils {
     return corners.map((point) => `${point.x},${point.y}`).join(" ");
   }
 
-  static getStrHexCorners(hex, size) {
-    const corners = this.getHexCorners(hex, size);
+  static getStrHexCorners(size) {
+    const corners = this.getHexCorners(size);
     return this.cornersCoordToString(corners);
+  }
+
+  static getRad(size, width) {
+    const w = Math.sqrt(3) * size;
+    return Math.trunc(width / w / 2);
+  }
+
+  static pathToPoints(path, size) {
+    let pathPoints = [];
+    path.forEach(({ q, r }) => {
+      pathPoints.push(this.hexToPoint(new Hex(q, r, -q - r), size));
+    });
+    return pathPoints;
+  }
+
+  static strPathToPoints(path, size) {
+    const points = this.pathToPoints(path, size);
+    const d = points
+      .map((point, i) => {
+        if (i === 0) {
+          return `M ${point.x} ${point.y} `;
+        } else {
+          return `L ${point.x} ${point.y} `;
+        }
+      })
+      .join(" ");
+    return d;
   }
 }
 

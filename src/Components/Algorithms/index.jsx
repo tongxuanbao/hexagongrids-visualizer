@@ -72,6 +72,7 @@ const useAlgorithms = (hexagons, origin, target) => {
       }
       pa.push(v);
     }
+    ani.shift();
     return [ani, pa];
   }
 

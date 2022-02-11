@@ -2,15 +2,15 @@ import PropTypes from "prop-types";
 import { useContext, useState } from "react";
 import HexUtils from "./HexUtils";
 import Hex from "./Models/Hex";
-import { GridContext } from "./GridContext";
+import { GridContext } from "./";
 
 const Hexagon = (props) => {
   const { hex, className } = props;
-  const { fill, fillTo, animationDelay, isAnimate } = props;
-  // const [hex, setHex] = useState(new Hex(q, r, s));
-  // const { size } = useContext(GridContext);
-
   const { size } = useContext(GridContext);
+  const [points, setPoint] = useState(HexUtils.getStrHexCorners(size));
+  const [translation, setTranslation] = useState(
+    HexUtils.hexToPoint(hex, size)
+  );
 
   function onMouseEnter(e) {
     if (props.onMouseEnter) {
@@ -42,10 +42,9 @@ const Hexagon = (props) => {
     }
   }
 
-  const [points, setPoint] = useState(HexUtils.getStrHexCorners(hex, size));
   return (
     <g
-      className={className}
+      className="hexagon"
       // transform={`translate(${pixel.x}, ${pixel.y})`}
       draggable="true"
       onMouseEnter={(e) => onMouseEnter(e)}
@@ -59,24 +58,16 @@ const Hexagon = (props) => {
       onDragOver={(e) => this.onDragOver(e)}
       // onDrop={(e) => this.onDrop(e)}
     >
-      <g className="hexagon">
+      <g
+        className={className}
+        transform={`translate(${translation.toString()})`}
+      >
         <polygon
           points={points}
-          fill={fill}
+          // fill={fill}
           stroke="hsl(0, 0%, 70%)"
-          strokeWidth="2"
-        >
-          {isAnimate && (
-            <animate
-              attributeName="fill"
-              from={fill}
-              to={fillTo}
-              fill="freeze"
-              begin={`${animationDelay}s`}
-              dur="0.5s"
-            />
-          )}
-        </polygon>
+          strokeWidth="1"
+        ></polygon>
         {props.children}
       </g>
     </g>

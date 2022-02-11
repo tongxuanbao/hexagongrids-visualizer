@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import Point from "./Models/Point";
 import { createContext } from "react";
-import { GridContext } from "./GridContext";
+import { GridContext } from "./";
 
 const HexGrid = (props) => {
   const { children, className, size } = props;

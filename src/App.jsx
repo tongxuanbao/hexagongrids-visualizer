@@ -25,7 +25,9 @@ import { useState, useEffect, createContext } from "react";
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
-  return Math.min(width, height - 100);
+  const panelDimension = Math.min(Math.trunc(width * 0.9), height - 100);
+  const size = Math.min(20.0, Math.trunc(panelDimension / 17));
+  return { size, panelDimension };
 }
 
 export const GridContext = createContext({});

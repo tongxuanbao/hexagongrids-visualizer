@@ -4,19 +4,18 @@ import {
   HexGrid,
   HexGenerator,
   Hexagon,
-  Hex,
   Path,
-  GridContext,
 } from "../../HexagonGrids";
 import { useEffect, useState, useContext } from "react";
 import useAlgorithms from "../Algorithms";
 import "../../Styles/Mainbody.css";
 import ControlPanel from "../ControlPanel";
 import Legends from "../Legends";
+import { GridContext } from "../../App";
 
 const Mainbody = () => {
-  const { size, width, height } = useContext(GridContext);
-  const [rad, setRad] = useState(HexUtils.getRad(size, width));
+  const { size, panelDimension } = useContext(GridContext);
+  const [rad, setRad] = useState(HexUtils.getRad(size, panelDimension));
 
   const [hexagons, setHexagons] = useState(HexGenerator.hexagonArr(rad));
   const [origin, setOrigin] = useState({
@@ -39,6 +38,14 @@ const Mainbody = () => {
 
   const runAlgo = useAlgorithms(hexagons, origin, target);
 
+  function getViewBox() {
+    const center = HexUtils.hexToPoint(hexagons[rad][rad], size);
+    const x1 = center.x - panelDimension / 2;
+    return `${x1} -${size + 3} ${panelDimension} ${
+      (panelDimension * Math.sqrt(3)) / 2
+    }`;
+  }
+
   function executeAlgo() {
     const [ani, pa] = runAlgo(algo);
     setAnimation(ani);
@@ -48,6 +55,19 @@ const Mainbody = () => {
   useEffect(() => {
     if (realTime) executeAlgo();
   }, [origin, target, hexagons]);
+
+  useEffect(() => {
+    setRad(HexUtils.getRad(size, panelDimension));
+    setHexagons(HexGenerator.hexagonArr(rad));
+    setOrigin({
+      q: Math.round(rad / 2),
+      r: rad,
+    });
+    setTarget({
+      q: Math.round(rad + rad / 2),
+      r: rad,
+    });
+  }, [panelDimension]);
 
   function clearAnimation() {
     setAnimation([]);
@@ -131,9 +151,9 @@ const Mainbody = () => {
       <Legends />
       <div>
         <HexViewPort
-          width={740}
-          height={650}
-          viewBox={`${(size * 1.5 * rad) / 2} -${size + 3} 740 650`}
+          width={panelDimension}
+          height={(panelDimension * Math.sqrt(3)) / 2}
+          viewBox={getViewBox()}
         >
           <HexGrid size={size}>
             {hexagons.map((hex_row, q) =>

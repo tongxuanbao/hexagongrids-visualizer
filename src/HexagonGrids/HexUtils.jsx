@@ -70,7 +70,9 @@ class HexUtils {
 
   static getRad(size, width) {
     const w = Math.sqrt(3) * size;
-    return Math.trunc(width / w / 2);
+    let rad = 0;
+    while (((rad + 1) * 2 + 1) * w < width) rad += 1;
+    return rad;
   }
 
   static pathToPoints(path, size) {

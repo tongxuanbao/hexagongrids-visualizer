@@ -8,7 +8,7 @@ const HexViewPort = (props) => {
       width={width}
       height={height}
       viewBox={viewBox}
-      style={{ border: "3px solid red" }}
+      // style={{ border: "3px solid red" }}
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
     >

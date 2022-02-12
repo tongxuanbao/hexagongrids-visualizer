@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Mainbody from "./Components/Mainbody";
+import { useState, useEffect, createContext } from "react";
 
 // // Import the functions you need from the SDKs you need
 // import { initializeApp } from "firebase/f";
@@ -22,8 +23,32 @@ import Mainbody from "./Components/Mainbody";
 // const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return Math.min(width, height - 100);
+}
+
+export const GridContext = createContext({});
+
 function App() {
-  return <Mainbody />;
+  const [panelDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return (
+    <GridContext.Provider value={panelDimensions}>
+      <Mainbody />
+    </GridContext.Provider>
+  );
 }
 
 export default App;

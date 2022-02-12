@@ -26,7 +26,8 @@ g.hexagon {
 }
 
 g.visited {
-  fill: hsl(200, 10%, 90%);
+  /* fill: hsl(200, 10%, 90%); */
+  fill: hsl(200, 50%, 80%);
   transition: fill 0.3s;
 }
 
@@ -60,4 +61,12 @@ g.wall {
   100% {
     stroke-dashoffset: 0;
   }
+}
+
+.Legends {
+  display: flex;
+}
+
+.Legends .withMargin {
+  margin-right: 20px;
 }

@@ -11,6 +11,8 @@ import {
 import { useEffect, useState, useContext } from "react";
 import useAlgorithms from "../Algorithms";
 import "../../Styles/Mainbody.css";
+import ControlPanel from "../ControlPanel";
+import Legends from "../Legends";
 
 const Mainbody = () => {
   const { size, width, height } = useContext(GridContext);
@@ -118,25 +120,15 @@ const Mainbody = () => {
   }
   return (
     <div className="Mainbody">
-      <div>
-        <select
-          className="algo-selection"
-          onChange={onAlgoChanged}
-          value={algo}
-        >
-          <option value="dijkstra">Dijkstra's Algorithm</option>
-          <option value="astar">A* Search</option>
-          <option value="bfs">Breadth First Search</option>
-          <option value="dfs">Depth First Search</option>
-        </select>
-        <button onClick={() => executeAlgo()}>Run Algorithm</button>
-        <button onClick={() => clearAnimation()} disabled={realTime}>
-          Clear Animation
-        </button>
-        <button onClick={() => setRealTime(!realTime)}>{`Realtime: ${
-          realTime ? "ON" : "OFF"
-        }`}</button>
-      </div>
+      <ControlPanel
+        algo={algo}
+        onAlgoChanged={onAlgoChanged}
+        executeAlgo={executeAlgo}
+        clearAnimation={clearAnimation}
+        realTime={realTime}
+        setRealTime={setRealTime}
+      />
+      <Legends />
       <div>
         <HexViewPort
           width={740}

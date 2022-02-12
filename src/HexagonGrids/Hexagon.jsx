@@ -5,7 +5,7 @@ import Hex from "./Models/Hex";
 import { GridContext } from "./";
 
 const Hexagon = (props) => {
-  const { hex, className, animationDelay } = props;
+  const { hex, className, animationDelay, realTime } = props;
   const { size } = useContext(GridContext);
   const [points, setPoint] = useState(HexUtils.getStrHexCorners(size));
   const [translation, setTranslation] = useState(
@@ -61,7 +61,10 @@ const Hexagon = (props) => {
       <g
         className={className}
         transform={`translate(${translation.toString()})`}
-        style={{ transitionDelay: `${animationDelay}s` }}
+        style={{
+          transitionDelay: `${realTime ? 0 : animationDelay}s`,
+          transitionDuration: `${realTime ? 0 : 0.3}s`,
+        }}
       >
         <polygon
           points={points}

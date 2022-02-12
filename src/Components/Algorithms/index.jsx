@@ -82,13 +82,11 @@ const useAlgorithms = (hexagons, origin, target) => {
   }
 
   function runAlgo(algo) {
-    let ani, pa;
+    let ani = [],
+      pa = [];
 
-    if (algo === "dijkstra") return dijkstra();
-    // setAnimation(ani);
-    // setPath(pa);
-    // animation = ani;
-    // path = pa;
+    if (algo === "dijkstra") [ani, pa] = dijkstra();
+    return [ani, pa];
   }
 
   // return [animation, path, runAlgo];

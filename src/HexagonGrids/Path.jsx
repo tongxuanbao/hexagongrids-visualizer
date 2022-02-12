@@ -3,7 +3,7 @@ import { HexUtils } from ".";
 import { GridContext } from "./";
 
 const Path = (props) => {
-  const { path, animationDelay } = props;
+  const { path, animationDelay, realTime } = props;
   const { size } = useContext(GridContext);
   const [points, setPoints] = useState("");
   const [animationStyle, setAnimationStyle] = useState({});
@@ -12,8 +12,8 @@ const Path = (props) => {
       setAnimationStyle({
         // animation: `pathAnimation  ${animationDelay}s 1 forwards`,
         animationName: "pathAnimation",
-        animationDuration: "5s",
-        animationDelay: `${animationDelay}s`,
+        animationDuration: `${realTime ? 0 : 5}s`,
+        animationDelay: `${realTime ? 0 : animationDelay}s`,
         animationIterationCount: "1",
         animationFillMode: "forwards",
       });

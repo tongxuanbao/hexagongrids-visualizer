@@ -148,14 +148,14 @@ const Mainbody = () => {
         realTime={realTime}
         setRealTime={setRealTime}
       />
-      <Legends />
+      {/* <Legends /> */}
       <div>
         <HexViewPort
           width={panelDimension}
           height={(panelDimension * Math.sqrt(3)) / 2}
           viewBox={getViewBox()}
         >
-          <HexGrid size={size}>
+          <HexGrid className={"grid"} size={size}>
             {hexagons.map((hex_row, q) =>
               hex_row.map((hex, r) => {
                 if (!hex) return;

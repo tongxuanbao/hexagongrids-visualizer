@@ -4,7 +4,7 @@ const HexViewPort = (props) => {
   const { width, height, viewBox } = props;
   return (
     <svg
-      className="grid"
+      className="gridContainer shadow"
       width={width}
       height={height}
       viewBox={viewBox}

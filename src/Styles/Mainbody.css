@@ -1,8 +1,14 @@
+.body {
+  background-color: pink;
+  font-family: "Fira Code";
+}
+
 .Mainbody {
   display: flex;
   flex-direction: column;
   justify-items: center;
   align-items: center;
+  background-color: transparent;
 }
 path.path {
   fill: none;
@@ -80,6 +86,169 @@ g.wall {
 }
 
 button {
+  font-size: 17px;
   margin: 2px;
   margin-top: 5px;
+}
+select {
+  font-size: 17px;
+  margin: 2px;
+  margin-top: 5px;
+}
+
+.grid {
+  border-radius: 10px;
+  box-shadow: -2px 2px 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+.shadow {
+  -webkit-filter: drop-shadow(-2px 2px 4px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(-2px 2px 4px rgba(0, 0, 0, 0.5));
+  /* Similar syntax to box-shadow */
+}
+
+/* .controlPanel {
+  display: flex;
+  flex: 1;
+  margin: 10px 0;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  background-color: white;
+  padding: 15px 20px 0;
+  border-radius: 10px;
+  box-shadow: -2px 2px 4px 0 rgba(0, 0, 0, 0.3);
+} */
+
+.title {
+  margin: -50px 0 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 341px;
+  height: 84px;
+  background-image: url(../Assets/popupDesk.png);
+  background-position: center;
+}
+
+.title h3 {
+  user-select: none;
+  max-width: 250px;
+  padding: 0 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 21px;
+  line-height: 2;
+  color: #ffbf00;
+  letter-spacing: 0;
+  margin: 13px 0 0;
+  text-shadow: 0 -1px 0 #fffa6d, #001b51 3px 0 0, #001b51 2.83487px 0.981584px 0,
+    #001b51 2.35766px 1.85511px 0, #001b51 1.62091px 2.52441px 0,
+    #001b51 0.705713px 2.91581px 0, #001b51 -0.287171px 2.98622px 0,
+    #001b51 -1.24844px 2.72789px 0, #001b51 -2.07227px 2.16926px 0,
+    #001b51 -2.66798px 1.37182px 0, #001b51 -2.96998px 0.42336px 0,
+    #001b51 -2.94502px -0.571704px 0, #001b51 -2.59586px -1.50383px 0,
+    #001b51 -1.96093px -2.27041px 0, #001b51 -1.11013px -2.78704px 0,
+    #001b51 -0.137119px -2.99686px 0, #001b51 0.850987px -2.87677px 0,
+    #001b51 1.74541px -2.43999px 0, #001b51 2.44769px -1.73459px 0,
+    #001b51 2.88051px -0.838247px 0;
+}
+
+.controlPanel {
+  margin-top: 50px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px #979797 solid;
+  border-radius: 22px;
+  align-items: center;
+  padding: 0 20px 20px;
+  box-shadow: -2px 2px 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+.content {
+  display: flex;
+}
+
+.alignSelect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.alignSelect .legend {
+  font-size: 20px;
+}
+
+.alignSelect .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.alignSelect .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.alignSelect .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.alignSelect .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.alignSelect input:checked + .slider {
+  background-color: #2196f3;
+}
+
+.alignSelect input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+.alignSelect input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.alignSelect .slider.round {
+  border-radius: 34px;
+}
+
+.alignSelect .slider.round:before {
+  border-radius: 50%;
+}
+
+.runAlgo {
+  margin-right: 20px;
 }

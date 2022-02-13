@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 
 const ControlPanel = (props) => {
   const {
@@ -8,12 +10,14 @@ const ControlPanel = (props) => {
     clearAnimation,
     realTime,
     setRealTime,
+    setInfoModal,
   } = props;
 
   const [algoRunning, setAlgoRunning] = useState(false);
 
   function handleToggle(event) {
-    if (!event.target.checked) clearAnimation();
+    clearAnimation();
+    setAlgoRunning(false);
     setRealTime(event.target.checked);
   }
 
@@ -49,27 +53,29 @@ const ControlPanel = (props) => {
           </label>
         </div>
         <button
-          className="runAlgo"
+          className="btYellowBig"
           disabled={realTime}
           onClick={() => handleRunAlgo()}
         >
-          {algoRunning ? "Clear Algorithm" : "Run Algorithm"}
+          <strong>{algoRunning ? "Clear" : "Run"}</strong>
         </button>
         <div className="alignSelect">
           <div className="legend">Realtime</div>
           <label className="switch">
             <input type="checkbox" onChange={handleToggle} />
-            <span className="slider round"></span>
+            <span className="slider"></span>
           </label>
         </div>
-        {/* <button onClick={() => setRealTime(!realTime)}>
-          {realTime && <b>{"Realtime: ON"}</b>}
-          {!realTime && "Realtime: OFF"}
-        </button> */}
-        {/* <button onClick={() => clearAnimation()} disabled={realTime}>
-          Clear Animation
-        </button> */}
+        <button
+          className="info"
+          onClick={() => {
+            setInfoModal(true);
+          }}
+        >
+          <FontAwesomeIcon icon={faCircleInfo} />
+        </button>
       </div>
+      {/* <InfoModal /> */}
     </div>
   );
 };

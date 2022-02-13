@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: "Fira Code";
+  font-family: "Nunito", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(209, 65, 79);

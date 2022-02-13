@@ -12,6 +12,7 @@ import "../../Styles/Mainbody.css";
 import ControlPanel from "../ControlPanel";
 import Legends from "../Legends";
 import { GridContext } from "../../App";
+import InfoModal from "../InfoModal";
 
 const Mainbody = () => {
   const { size, panelDimension } = useContext(GridContext);
@@ -35,6 +36,7 @@ const Mainbody = () => {
   const [animation, setAnimation] = useState([]);
   const [path, setPath] = useState([]);
   const [realTime, setRealTime] = useState(false);
+  const [infoModal, setInfoModal] = useState(false);
 
   const runAlgo = useAlgorithms(hexagons, origin, target);
 
@@ -147,6 +149,7 @@ const Mainbody = () => {
         clearAnimation={clearAnimation}
         realTime={realTime}
         setRealTime={setRealTime}
+        setInfoModal={setInfoModal}
       />
       {/* <Legends /> */}
       <div>
@@ -199,6 +202,7 @@ const Mainbody = () => {
           </HexGrid>
         </HexViewPort>
       </div>
+      {infoModal && <InfoModal setInfoModal={setInfoModal} />}
     </div>
   );
 };

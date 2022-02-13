@@ -1,6 +1,5 @@
 .body {
   background-color: pink;
-  font-family: "Fira Code";
 }
 
 .Mainbody {
@@ -145,6 +144,7 @@ select {
   text-align: center;
   text-transform: uppercase;
   font-size: 21px;
+  font-weight: 600;
   line-height: 2;
   color: #ffbf00;
   letter-spacing: 0;
@@ -186,7 +186,32 @@ select {
 }
 
 .alignSelect .legend {
+  font-weight: 900;
   font-size: 20px;
+}
+
+.alignSelect .select {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-width: 72px;
+  height: 34px;
+  border: 2px #868d96 solid;
+  border-radius: 7px;
+}
+
+.alignSelect .select select {
+  padding: 10px 10px 10px 10px;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  position: relative;
+  line-height: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #797979;
+  z-index: 2;
 }
 
 .alignSelect .switch {
@@ -212,6 +237,7 @@ select {
   background-color: #ccc;
   -webkit-transition: 0.4s;
   transition: 0.4s;
+  border-radius: 7px;
 }
 
 .alignSelect .slider:before {
@@ -224,6 +250,7 @@ select {
   background-color: white;
   -webkit-transition: 0.4s;
   transition: 0.4s;
+  border-radius: 7px;
 }
 
 .alignSelect input:checked + .slider {
@@ -249,6 +276,96 @@ select {
   border-radius: 50%;
 }
 
-.runAlgo {
-  margin-right: 20px;
+.btYellowBig {
+  border-radius: 34px;
+  border: 2px transparent solid;
+  /* border: 2px transparent solid; */
+  box-shadow: 0 0 0 5px #002043, 0 0 0 6px #7c92b0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  background-color: #ffbf00;
+  border-top-color: #ffe100;
+  border-bottom-color: #f88700;
+  width: 170px;
+  height: 50px;
+  margin-right: 40px;
+  margin-left: 50px;
+}
+
+.btYellowBig:disabled {
+  cursor: auto;
+  background-color: #d8d6d3;
+  border-top-color: #f8f8f8;
+  border-bottom-color: #96928b;
+  overflow: visible;
+}
+
+.btYellowBig strong {
+  flex: 1;
+  font-family: "Nunito";
+  font-weight: 900;
+  font-size: 35px;
+  color: #001b4d;
+  letter-spacing: 0;
+  margin: 0 0 0 0;
+  text-transform: uppercase;
+  word-break: break-word;
+}
+
+.info {
+  border: none;
+  background-color: transparent;
+  font-size: 30px;
+}
+
+.modalBackground {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer {
+  width: auto;
+  height: auto;
+  min-height: 250px;
+  min-width: 250px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  padding-top: 15px;
+}
+
+/* .modalBody {
+  display: flex;
+} */
+
+.originContainer,
+.targetContainer,
+.pathWallContainer,
+.interactingGuide {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  margin: 10px;
+  margin-top: 15px;
+}
+
+.interactingGuide {
+  font-size: 20px;
+}
+
+.interactingGuide strong {
+  margin-left: 5px;
 }

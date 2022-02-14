@@ -84,7 +84,7 @@ const InfoModal = ({ setInfoModal }) => {
   const [points, setPoints] = useState(HexUtils.getStrHexCorners(size));
 
   return (
-    <div className="modalBackground">
+    <div className="modalBackground" onClick={() => setInfoModal(false)}>
       <div className="modalContainer ">
         <div className="titleCloseButton">
           <button onClick={() => setInfoModal(false)}> X </button>

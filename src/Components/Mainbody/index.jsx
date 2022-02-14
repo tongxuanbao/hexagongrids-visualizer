@@ -37,6 +37,7 @@ const Mainbody = () => {
   const [path, setPath] = useState([]);
   const [realTime, setRealTime] = useState(false);
   const [infoModal, setInfoModal] = useState(false);
+  const [algoRunning, setAlgoRunning] = useState(false);
 
   const runAlgo = useAlgorithms(hexagons, origin, target);
 
@@ -50,6 +51,7 @@ const Mainbody = () => {
 
   function executeAlgo() {
     const [ani, pa] = runAlgo(algo);
+    setAlgoRunning(true);
     setAnimation(ani);
     setPath(pa);
   }
@@ -72,6 +74,7 @@ const Mainbody = () => {
   }, [panelDimension]);
 
   function clearAnimation() {
+    setAlgoRunning(false);
     setAnimation([]);
     setPath([]);
   }
@@ -150,6 +153,7 @@ const Mainbody = () => {
         realTime={realTime}
         setRealTime={setRealTime}
         setInfoModal={setInfoModal}
+        algoRunning={algoRunning}
       />
       {/* <Legends /> */}
       <div>

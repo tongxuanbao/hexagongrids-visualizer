@@ -11,22 +11,20 @@ const ControlPanel = (props) => {
     realTime,
     setRealTime,
     setInfoModal,
+    algoRunning,
+    // setAlgoRunning,
   } = props;
-
-  const [algoRunning, setAlgoRunning] = useState(false);
 
   function handleToggle(event) {
     clearAnimation();
-    setAlgoRunning(false);
     setRealTime(event.target.checked);
+    executeAlgo();
   }
 
   function handleRunAlgo(event) {
     if (algoRunning) {
-      setAlgoRunning(false);
       clearAnimation();
     } else {
-      setAlgoRunning(true);
       executeAlgo();
     }
   }

@@ -13,6 +13,7 @@ import ControlPanel from "../ControlPanel";
 import Legends from "../Legends";
 import { GridContext } from "../../App";
 import InfoModal from "../InfoModal";
+import Footer from "../Footer";
 
 const Mainbody = () => {
   const { size, panelDimension } = useContext(GridContext);
@@ -207,6 +208,8 @@ const Mainbody = () => {
         </HexViewPort>
       </div>
       {infoModal && <InfoModal setInfoModal={setInfoModal} />}
+
+      <Footer />
     </div>
   );
 };

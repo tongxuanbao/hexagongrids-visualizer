@@ -379,3 +379,13 @@ select {
 .interactingGuide strong {
   margin-left: 5px;
 }
+
+.Footer {
+  margin-top: -10px;
+}
+
+.Footer a {
+  color: black;
+  font-size: 25px;
+  margin-left: 10px;
+}

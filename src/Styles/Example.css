@@ -1,26 +1,54 @@
-#Animate1 {
+.createWall #Animate1 {
   animation-name: changeColor1;
   animation-duration: 2s;
   animation-iteration-count: infinite;
   fill: hsl(60, 10%, 95%);
 }
 
-#Animate2 {
+.createWall #Animate2 {
   animation-name: changeColor2;
   animation-duration: 2s;
   animation-iteration-count: infinite;
   fill: hsl(60, 10%, 95%);
 }
 
-#Animate3 {
+.createWall #Animate3 {
   animation-name: changeColor3;
   animation-duration: 2s;
   animation-iteration-count: infinite;
   fill: hsl(60, 10%, 95%);
 }
 
-#Animate4 {
+.createWall #Animate4 {
   animation-name: changeColor4;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  fill: hsl(60, 10%, 95%);
+}
+
+.moveOrigin #Animate1 {
+  animation-name: changeColor5;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  fill: hsl(60, 10%, 95%);
+}
+
+.moveOrigin #Animate2 {
+  animation-name: changeColor6;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  fill: hsl(60, 10%, 95%);
+}
+
+.moveOrigin #Animate3 {
+  animation-name: changeColor7;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  fill: hsl(60, 10%, 95%);
+}
+
+.moveOrigin #Animate4 {
+  animation-name: changeColor8;
   animation-duration: 2s;
   animation-iteration-count: infinite;
   fill: hsl(60, 10%, 95%);
@@ -38,6 +66,10 @@
   /* offset-path: path("M -100,50 C20,100 200,0 200,100"); */
   offset-path: path("M 125 -150 L 125 -30");
   /* transform: translate(-50px, 130px);M-65,20 */
+}
+
+.guideModal {
+  display: flex;
 }
 
 @keyframes dragging {
@@ -109,5 +141,68 @@
   }
   100% {
     fill: hsl(0, 20%, 70%);
+  }
+}
+
+@keyframes changeColor5 {
+  0% {
+    fill: hsl(90, 100%, 50%);
+  }
+  10% {
+    fill: hsl(90, 100%, 50%);
+  }
+  11% {
+    fill: hsl(60, 10%, 95%);
+  }
+}
+
+@keyframes changeColor6 {
+  0% {
+    fill: hsl(60, 10%, 95%);
+  }
+  11% {
+    fill: hsl(60, 10%, 95%);
+  }
+  12% {
+    fill: hsl(90, 100%, 50%);
+  }
+  39% {
+    fill: hsl(90, 100%, 50%);
+  }
+  40% {
+    fill: hsl(60, 10%, 95%);
+  }
+}
+
+@keyframes changeColor7 {
+  0% {
+    fill: hsl(60, 10%, 95%);
+  }
+  40% {
+    fill: hsl(60, 10%, 95%);
+  }
+  41% {
+    fill: hsl(90, 100%, 50%);
+  }
+  54% {
+    fill: hsl(90, 100%, 50%);
+  }
+  55% {
+    fill: hsl(60, 10%, 95%);
+  }
+}
+
+@keyframes changeColor8 {
+  0% {
+    fill: hsl(60, 10%, 95%);
+  }
+  53% {
+    fill: hsl(60, 10%, 95%);
+  }
+  54% {
+    fill: hsl(90, 100%, 50%);
+  }
+  100% {
+    fill: hsl(90, 100%, 50%);
   }
 }

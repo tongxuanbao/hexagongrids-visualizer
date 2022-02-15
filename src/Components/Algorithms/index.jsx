@@ -50,6 +50,7 @@ const useAlgorithms = (hexagons, origin, target) => {
         if (to.q < 0 || to.q >= len || to.r < 0 || to.r >= len) continue;
         if (isMarked[to.q][to.r]) continue;
         if (!hexagons[to.q][to.r]) continue;
+        if (hexagons[to.q][to.r].isWall) continue;
         if (d[v.q][v.r] + 1 < d[to.q][to.r]) {
           p[to.q][to.r] = v;
           d[to.q][to.r] = d[v.q][v.r] + 1;
@@ -128,6 +129,7 @@ const useAlgorithms = (hexagons, origin, target) => {
         if (to.q < 0 || to.q >= len || to.r < 0 || to.r >= len) continue;
         if (isMarked[to.q][to.r]) continue;
         if (!hexagons[to.q][to.r]) continue;
+        if (hexagons[to.q][to.r].isWall) continue;
         p[to.q][to.r] = v;
         run(to);
         if (terminate) return;
@@ -161,28 +163,23 @@ const useAlgorithms = (hexagons, origin, target) => {
       // Find node in open list
       let vKey = null;
       let dis = len * len + len;
+      let g = 0;
       openList.forEach((value, key) => {
         let hex = JSON.parse(key);
-        if (
-          value +
-            HexUtils.hex_distance(
-              hexagons[hex.q][hex.r],
-              hexagons[target.q][target.r]
-            ) <
-          dis
-        ) {
+        let h = HexUtils.hex_distance(
+          hexagons[hex.q][hex.r],
+          hexagons[target.q][target.r]
+        );
+        if (value + h < dis) {
           vKey = key;
-          dis =
-            value +
-            HexUtils.hex_distance(
-              hexagons[hex.q][hex.r],
-              hexagons[target.q][target.r]
-            );
+          dis = value + h;
+          g = value;
         }
       });
 
       // Check if it's target
       if (vKey === JSON.stringify(target)) break;
+
       closedList.set(vKey, openList.get(vKey));
       openList.delete(vKey);
 
@@ -198,22 +195,31 @@ const useAlgorithms = (hexagons, origin, target) => {
 
         if (
           closedList.has(JSON.stringify(to)) &&
-          closedList.get(JSON.stringify(to)) > dis + 1
+          closedList.get(JSON.stringify(to)) > g + 1
         ) {
-          closedList.set(JSON.stringify(to), dis + 1);
+          closedList.set(JSON.stringify(to), g + 1);
         } else if (
           openList.has(JSON.stringify(to)) &&
-          openList.get(JSON.stringify(to)) > dis + 1
+          openList.get(JSON.stringify(to)) > g + 1
         ) {
-          openList.set(JSON.stringify(to), dis + 1);
+          openList.set(JSON.stringify(to), g + 1);
         } else if (
           !closedList.has(JSON.stringify(to)) &&
           !openList.has(JSON.stringify(to))
         ) {
-          openList.set(JSON.stringify(to), dis + 1);
+          openList.set(JSON.stringify(to), g + 1);
         }
       }
     }
+
+    // {
+    //   let v = target;
+    //   while (JSON.stringify(v) !== JSON.stringify(origin)) {
+    //     pa.push(v);
+    //     v = p[v.q][v.r];
+    //   }
+    //   pa.push(v);
+    // }
     return [ani, pa];
   }
 

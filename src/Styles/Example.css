@@ -1,0 +1,113 @@
+#Animate1 {
+  animation-name: changeColor1;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  fill: hsl(60, 10%, 95%);
+}
+
+#Animate2 {
+  animation-name: changeColor2;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  fill: hsl(60, 10%, 95%);
+}
+
+#Animate3 {
+  animation-name: changeColor3;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  fill: hsl(60, 10%, 95%);
+}
+
+#Animate4 {
+  animation-name: changeColor4;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  fill: hsl(60, 10%, 95%);
+}
+
+#OtherPolygon path {
+  fill: hsl(60, 10%, 95%);
+}
+
+#Cursor {
+  animation-name: dragging;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  fill: red;
+  /* offset-path: path("M -100,50 C20,100 200,0 200,100"); */
+  offset-path: path("M 125 -150 L 125 -30");
+  /* transform: translate(-50px, 130px);M-65,20 */
+}
+
+@keyframes dragging {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+@keyframes changeColor1 {
+  0% {
+    fill: hsl(60, 10%, 95%);
+  }
+  10% {
+    fill: hsl(60, 10%, 95%);
+  }
+  11% {
+    fill: hsl(0, 20%, 70%);
+  }
+  99% {
+    fill: hsl(0, 20%, 70%);
+  }
+  100% {
+    fill: hsl(0, 20%, 70%);
+  }
+}
+
+@keyframes changeColor2 {
+  0% {
+    fill: hsl(60, 10%, 95%);
+  }
+  20% {
+    fill: hsl(60, 10%, 95%);
+  }
+  21% {
+    fill: hsl(0, 20%, 70%);
+  }
+  100% {
+    fill: hsl(0, 20%, 70%);
+  }
+}
+
+@keyframes changeColor3 {
+  0% {
+    fill: hsl(60, 10%, 95%);
+  }
+  40% {
+    fill: hsl(60, 10%, 95%);
+  }
+  41% {
+    fill: hsl(0, 20%, 70%);
+  }
+  100% {
+    fill: hsl(0, 20%, 70%);
+  }
+}
+
+@keyframes changeColor4 {
+  0% {
+    fill: hsl(60, 10%, 95%);
+  }
+  55% {
+    fill: hsl(60, 10%, 95%);
+  }
+  56% {
+    fill: hsl(0, 20%, 70%);
+  }
+  100% {
+    fill: hsl(0, 20%, 70%);
+  }
+}

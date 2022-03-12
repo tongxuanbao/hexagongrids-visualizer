@@ -5,7 +5,7 @@ import Hex from "./Models/Hex";
 import { GridContext } from "./";
 
 const Hexagon = (props) => {
-  const { hex, className, animationDelay, realTime } = props;
+  const { hex, className } = props;
   const { size } = useContext(GridContext);
   const [points, setPoint] = useState(HexUtils.getStrHexCorners(size));
   const [translation, setTranslation] = useState(
@@ -46,16 +46,16 @@ const Hexagon = (props) => {
     <g
       className="hexagon"
       // transform={`translate(${pixel.x}, ${pixel.y})`}
-      draggable="true"
+      // draggable="true"
       onMouseEnter={(e) => onMouseEnter(e)}
       // onMouseOver={(e) => onMouseOver(e)}
       // onMouseLeave={(e) => onMouseLeave(e)}
       onMouseDown={(e) => onMouseDown(e)}
       onMouseUp={(e) => onMouseUp(e)}
-      onClick={(e) => onClick(e)}
-      onDragStart={(e) => onDragStart(e)}
+      // onClick={(e) => onClick(e)}
+      // onDragStart={(e) => onDragStart(e)}
       // onDragEnd={(e) => this.onDragEnd(e)}
-      onDragOver={(e) => this.onDragOver(e)}
+      // onDragOver={(e) => this.onDragOver(e)}
       // onDrop={(e) => this.onDrop(e)}
     >
       <g
